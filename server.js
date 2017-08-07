@@ -15,7 +15,6 @@ var jwt = require('jsonwebtoken');
 var morgan = require('morgan');
 
 mongoose.connect('mongodb://luisedtei:poltrona159@ds125113.mlab.com:25113/help');
-//mongoose.connect('mongodb://localhost:27017/help');
 var db = mongoose.connection;
 // Init App
 var app = express();

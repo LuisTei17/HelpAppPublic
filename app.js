@@ -14,16 +14,16 @@ var mongoose = require('mongoose');
 var jwt = require('jsonwebtoken');
 var morgan = require('morgan');
 
-mongoose.connect('mongodb://localhost/help');
+mongoose.connect('mongodb://luisedtei:poltrona159@ds125113.mlab.com:25113/help');
 var db = mongoose.connection;
 // Init App
 var app = express();
 
 // View Engine
 app.set('views', path.join(__dirname, 'views'));
-/*app.engine('handlebars', exphbs({defaultLayout:'layout'}));
+app.engine('handlebars', exphbs({defaultLayout:'layout'}));
 app.set('view engine', 'handlebars');
-*/
+
 // BodyParser Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
@@ -33,11 +33,39 @@ app.use(cookieParser());
 // Set Static Folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-
+app.use(session({secret: 'mySecret', resave: false, saveUninitialized: false}));
 
 // Secret variable
-app.set('superSecret', 'ilovescotchyscotch')
+app.set('superSecret', 'ilove')
 // Express Validator
+app.use(expressValidator({
+  errorFormatter: function(param, msg, value) {
+      var namespace = param.split('.')
+      , root    = namespace.shift()
+      , formParam = root;
+
+    while(namespace.length) {
+      formParam += '[' + namespace.shift() + ']';
+    }
+    return {
+      param : formParam,
+      msg   : msg,
+      value : value
+    };
+  }
+}));
+
+// Connect Flash
+app.use(flash());
+
+// Global Vars
+app.use(function (req, res, next) {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  res.locals.user = req.user || null;
+  next();
+});
 
 
 // Morgan manda logs

@@ -76,7 +76,7 @@ module.exports = function(app){
           }
           else {
             var token = jwt.sign(user, app.get('superSecret'), {
-              expiresIn: 120
+              expiresIn: 60*8
             });
             req.session.user = user;
             req.session.token = token;

@@ -82,7 +82,7 @@ app.use(function (req, res, next) {
 load('models', {cwd: 'app', verbose: true}).then('controllers').then('routes').into(app);
 
 // Set Port
-app.set('port', (process.env.PORT || 3000));
+app.set('port', (process.env.PORT || 4010));
 
 app.listen(app.get('port'), function(){
 	console.log('Server started on port '+ app.get('port'));

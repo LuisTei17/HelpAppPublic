@@ -17,6 +17,10 @@ module.exports = function(app){
 		res.render('login');
 	});
 
+	app.route('/index').get(function(req, res){
+		res.render('index');
+	})
+
 	var apiRoutes = express.Router();
 	var logout = express.Router();
 
@@ -38,16 +42,6 @@ module.exports = function(app){
 		}
 	});
 
-	logout.use(function(req, res) {
-		var token = req.session.token;
-		if(token) {
-			console.log(token);
-			token = null;
-			next();
-		} else {
-			res.render('registro');
-		}
-	})
 	app.use('/in/*', apiRoutes);
 	//app.use('/in/', apiRoutes )
 	app.get('/in', apiRoutes, function(req, res){
@@ -64,5 +58,14 @@ module.exports = function(app){
 		req.session.token =  null;
 		res.render('login');
 	})
+
+	app.get('/*', function(req, res){
+		if(req.session.token) {
+			res.render('index', {
+				user: req.session.user
+			});
+
+		}
+	} )
 
 }

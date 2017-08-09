@@ -1,0 +1,88 @@
+HELP
+
+Author: Bruno Robinson and Luís Eduardo de Barros Teixeira
+
+A project that aims to support the conection between people and charity institutions
+
+Sprints 1-3 = 1 week starting from april, 03, 2017
+
+Sprints 4-all = 2 weeks starting from april, 10, 2017
+
+Steps we must accomplish:
+
+    Create our marketing base (Twitter, Facebook, Gmail and blog). Twiiter, Facebook and Gmail - DONE Blog - In construction
+    Create our infra-strucutre for developing I (Slack, Github) Slack and Github - DONE
+    Talking to charity institutions in order to model our project to their needs
+
+4.Luis.1) Create our infra-structure for developing II (Models and Views)
+
+4.Luis.2) Determinate the logic, if we're gonna use an mobile app
+
+4.Luis.3) Determinate the languages for web, database and mobile (if we're gonna be mobile determinate frameworks *Possible languages include: Back-end: Php, Java, Ruby and JS. Front-end: HTML, CSS, SCSS and JS. Mobile: Java (Android Studio), Kivy (Python) and JS (Using Phonegap) *Possible DB languages: PostGREsql, mongoDB, using JSON as DB, mysql, sqlite *Possible frameworks: (PHP) Zend, Laravel or Cake (Java) Spring MVC (Python) Django (Ruby) Rails (JS) Node and Angular
+
+4.Bruno.1) Start the selection of colors
+
+4.Bruno.2) Design of logo
+
+4.Bruno.3) Design of Views (Screen) of the site and App (or mobile)
+
+4.Bruno.4) Design of Banners for Facebook and Slogan
+
+5.luis) Start developing
+
+5.Bruno) Start learning the technologies yet to be presented
+
+6.Luis) develivering main functinoality
+Branches
+
+Design and Programing, until something is said, both will bem completely separeted
+Technlogies we must know untill the begining of the first Spring:
+
+Git
+
+https://www.appdonation.com.br/ equalizze.com
+
+Founded debilities
+
+Resources catchment Manpower Finding people
+
+Founded possible functionalities
+
+Finding people nearby Donation Types of persona(Animals, disabled people, elders etc...)
+Functional requirements
+
+Types of persona (Children, elders, woman, man, medium size dogs, big dogs, cats and etc...) Register Suggestion of topics Events register for charity institutions Funds campaing Events for special dates (Easter, Christmas and etc...) Badgets rewards Sharing donations and badgets to facebook
+
+(Proposal)
+Steps (Basic)
+
+People Register donation use paypal earn badget share on facebook volunteer work find near institutions based on choice earn badget share on facebook Charity Register authencity (CNPJ or another reliable source) create campaigns donation products money work activities
+
+Steps (advanced) (People) Register -> Email confirmation -> Sugestion of themes (Disabled people, animals and etc..) -> \n see organizations near him for volunteer work - see charity institutions to donate -> \n make donation - apply for work -> donation processed - institution approve him -> earn badge -> \n share on facebook
+
+[[(Institution) Register -> Authenticy checking -> Create an event or donation campaign
+Mobile
+
+App
+Technologies
+
+Main language: Javascript Db: Mysql Mobile: ReactNative Frameworks: NodeJS and AngularJS
+Cronogram developer
+
+Site
+
+    Infra-structure, login, paypal
+    Feed
+    Configurations, profile
+    Google Maps
+    actions
+    Badgets
+
+Mobile
+
+    login, paypal
+    feed 3)Configurations, profile
+    Google Maps
+    Actions
+    Badgets
+

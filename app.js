@@ -31,7 +31,9 @@ app.use(require('method-override')());
 app.use(cookieParser());
 
 // Set Static Folder
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'), {
+  index: false
+}));
 
 app.use(session({secret: 'mySecret', resave: false, saveUninitialized: false}));
 
@@ -82,7 +84,7 @@ app.use(function (req, res, next) {
 load('models', {cwd: 'app', verbose: true}).then('controllers').then('routes').into(app);
 
 // Set Port
-app.set('port', (process.env.PORT || 4010));
+app.set('port', (process.env.PORT || 4020));
 
 app.listen(app.get('port'), function(){
 	console.log('Server started on port '+ app.get('port'));

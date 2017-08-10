@@ -13,22 +13,17 @@ var mongo = require('mongodb');
 var mongoose = require('mongoose');
 var jwt = require('jsonwebtoken');
 var morgan = require('morgan');
-var cons = require('consolidate');
 
-//mongoose.connect('mongodb://luisedtei:poltrona159@ds125113.mlab.com:25113/help');
-mongoose.connect('mongodb://localhost:27017/help');
+mongoose.connect('mongodb://luisedtei:poltrona159@ds125113.mlab.com:25113/help');
+//mongoose.connect('mongodb://localhost:27017/help');
 var db = mongoose.connection;
 // Init App
 var app = express();
 
 // View Engine
-/*app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'views'), {index:false});
 app.engine('handlebars', exphbs({defaultLayout:'layout'}));
 app.set('view engine', 'handlebars');
-*/
-app.engine('html', cons.swig)
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'html');
 
 // BodyParser Middleware
 app.use(bodyParser.json());

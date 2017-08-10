@@ -3,33 +3,14 @@ var jwt = require('jsonwebtoken');
 
 module.exports = function(app){
 	var controller = app.controllers.login;
-
-	// Registra usuario
-	app.route('/registro').post(controller.registro).get(function(req, res){
-		res.render('registro');
-	});
-	// Loga usuario
-	app.route('/login').post(controller.login).get(function(req, res){
-		res.render('login');
-	});
-
-	app.route('/logout').post(controller.logout).get(function(req, res){
-		res.render('login');
-	});
-
-	app.route('/index').get(function(req, res){
-		res.render('index');
-	})
-
 	var apiRoutes = express.Router();
-	var logout = express.Router();
 
 	apiRoutes.use(function(req, res, next) {
 		var token = req.session.token;
 		if (token) {
 			jwt.verify(token, app.get('superSecret'), function(err, decoded) {
 				if (err) {
-					return res.json({ success: false, message: 'Failed to authenticate token.' });
+					return res.redirect('/index');
 				} else {
 					// if everything is good, save to request for use in other routes
 					req.decoded = decoded;
@@ -38,11 +19,29 @@ module.exports = function(app){
 				}
 			});
 		} else {
-			res.render('login');
+			res.redirect('/login');
 		}
 	});
 
-	app.use('/in/*', apiRoutes);
+	app.use('/in', apiRoutes);
+	// Registra usuario
+	app.route('/registro').post(controller.registro).get(function(req, res){
+		res.render('registro');
+	});
+	// Loga usuario
+	app.route('/login').post(controller.login).get(function(req, res){
+		res.render('login');
+	});
+	app.route('/index').get(function(req, res){
+		if(req.session.token) {
+			res.render('index', {
+				user: req.session.user
+			});
+		} else {
+			res.render('index');
+		}
+	})
+
 	//app.use('/in/', apiRoutes )
 	app.get('/in', apiRoutes, function(req, res){
 		res.render('dash', {
@@ -50,22 +49,18 @@ module.exports = function(app){
 		});
 	})
 
-	app.get(`/in/luis`, function(req,res){
+	app.route(`/in/luis`).get(function(req,res){
 		res.render('profile');
 	})
 
 	app.get('/in/logout', apiRoutes, function(req, res){
 		req.session.token =  null;
-		res.render('login');
+		res.render('login', {
+			mensagem: 'Você se deslogou'
+		});
 	})
 
-	app.get('/*', function(req, res){
-		if(req.session.token) {
-			res.render('index', {
-				user: req.session.user
-			});
-
-		}
-	} )
-
+	app.use('/*', function(req, res){
+		res.redirect('/index');
+	})
 }

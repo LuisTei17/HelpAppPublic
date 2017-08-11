@@ -13,37 +13,9 @@ module.exports = function(){
 		},
 		email: {
 			type: String
-		}
+		},
+		categorias: []
 	});
 
-	var Usuario = mongoose.model('Usuario', UsuarioSchema);
- /*
-	Usuario.criaUsuario = function(novoUsuario, callback){
-		bcrypt.genSalt(10, function(err, salt) {
-		    bcrypt.hash(novoUsuario.password, salt, function(err, hash) {
-		        novoUsuario.password = hash;
-		        novoUsuario.save(callback);
-		    });
-		});
-	}
-
-	Usuario.usuarioPorNome = function(username, callback){
-		var query = {username: username};
-		Usuario.findOne(query, callback);
-	}
-
-	Usuario.usuarioPorId = function(id, callback){
-		Usuario.findById(id, callback);
-	}
-
-	Usuario.comparaSenha = function(candidatoSenha, hash, callback){
-		bcrypt.compare(candidatoSenha, hash, function(err, achou) {
-	    	if(err) {
-	        throw err;
-	      }
-	    	callback(null, achou);
-		});
-	}
-	*/
-	return Usuario;
+	return mongoose.model('Usuario', UsuarioSchema);
 }

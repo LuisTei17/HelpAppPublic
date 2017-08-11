@@ -1,1 +1,7 @@
-<h1>H</h1>
+
+<p>Welcome to your dashboard</p>
+<h1>Nome : {{ user.username }}</h1>
+{{#each user.categorias as |categoria|}}
+  <h1>Categorias: {{ categoria }}</h1>
+{{/each}}
+<h1>Email: {{user.email}}</h1>

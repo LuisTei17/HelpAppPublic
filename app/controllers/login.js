@@ -20,6 +20,10 @@ module.exports = function(app){
     var username = req.body.username;
     var password = req.body.password;
     var password2 = req.body.password2;
+    var categorias = req.body.categorias;
+
+    console.log(categorias[0] + " !!!Categorias!!!");
+    console.log(typeof categorias + "!!! tipo de categorias!!!");
     console.log(password + " !pass req.body!");
     // Validation
     req.checkBody('email', 'Email em branco').notEmpty();
@@ -40,7 +44,8 @@ module.exports = function(app){
       var newUser = new User({
         email:email,
         username: username,
-        password: passwordHash
+        password: passwordHash,
+        categorias: categorias
       });
       newUser.save(function(err){
         if(err) throw err;
@@ -48,6 +53,7 @@ module.exports = function(app){
         res.redirect('/login');
       });
     }
+
   }
 
 
@@ -85,10 +91,6 @@ module.exports = function(app){
           }
       }
     })
-  }
-  controller.logout = function(req, res){
-		req.logout();
-		res.redirect('/login');
   }
 
 

@@ -32,8 +32,10 @@ module.exports = function(app){
 	app.route('/login').post(controller.login).get(function(req, res){
 		res.render('login');
 	});
+	// Verifica se usuario está autenticado e mostra dados
 	app.route('/index').get(function(req, res){
 		if(req.session.token) {
+
 			res.render('index', {
 				user: req.session.user
 			});
@@ -42,15 +44,16 @@ module.exports = function(app){
 		}
 	})
 
-	//app.use('/in/', apiRoutes )
 	app.get('/in', apiRoutes, function(req, res){
-		res.render('dash', {
+		res.render('feed', {
 			user:req.session.user
 		});
 	})
 
-	app.route(`/in/luis`).get(function(req,res){
-		res.render('profile');
+	app.route(`/in/profile`).get(function(req,res){
+		res.render('profile', {
+			user:req.session.user
+		});
 	})
 
 	app.get('/in/logout', apiRoutes, function(req, res){
